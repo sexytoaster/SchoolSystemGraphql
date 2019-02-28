@@ -192,7 +192,6 @@ const resolvers = {
 
   Mutation: {
     createStudent: (parent, args, context, info) => { 
-      console.log("tut");
       let newStudent = {
         id: ((students.length)+1).toString(),
         email: args.email,

@@ -4,9 +4,20 @@ then  npm install express graphql --save
 then npm install nodemon --save
 then nodemon start
 
+mutation {
+  createStudent( name: {firstName: "booft", familyName: "sange"}, addressStreet: "wut", addressPostNumber: "20", addressCity:" Oulu", addressCountry: "sweden"){
+ 	success
+  }
+}
 
 mutation {
   createClass(id: 3, name: "chest", description: "booft"){
+ 	success
+  }
+}
+
+mutation {
+  createGrade(studentId: 3, courseId: 2, grade: 40){
  	success
   }
 }
@@ -21,15 +32,35 @@ query {
 }
 
 query {
+    students
+    {
+        name{
+            firstName, familyName
+        }
+    }
+}
+
+query {
+    class(id: 1){
+      id, name, description
+    }
+}
+
+query {
     classes{
       id
     }
 }
+
 query{
-  students{
-    address{
-      street, city
-    }
+  grade(studentId: 1, courseId: 2){
+    grade
+  }
+}
+
+query{
+  grades{
+    grade, studentId, courseId
   }
 }
 
@@ -56,8 +87,3 @@ editGrade(studentId: 1, courseId: 2, grade: 90){
   }
 }
 
-{
-  grades {
-    studentId, courseId, grade
-  }
-}
